@@ -1,0 +1,34 @@
+set title "Double Het Model, tmp={temp}"
+
+set acelib "/opt/JEFF-3.3/sss_jeff33.xsdir"
+
+% Surfaces
+surf s1 sph  0 0 0 1.38
+surf s2 sph  0 0 0 1.8
+surf s3 sph  0 0 0 2.0
+surf s4 cube 0 0 0 2.0
+
+% Cells
+cell c1 0 ldg  -s1
+cell c2 0 fuel -s2 s1
+cell c3 0 hdg  -s3 s2  
+cell c4 0 void -s4 s3
+cell c5 0 outside  s4
+set bc 2 % reflective boundary conditions
+
+% Materials
+mat ldg  -1.05               tmp {temp}
+      6000.03c 1.0 % High Density Graphite
+mat hdg  -1.65               tmp {temp}
+      6000.03c 1.0 %  Low Density Graphite
+mat fuel -1.9368544856599657 tmp {temp} % carbon-buffer, SiC, IPyC, OPyC
+      6000.03c 0.8152168628797424    % Carbon
+     14028.03c 0.04305091836499166   % Silicon
+     14029.03c 0.0022729470766766208
+     14030.03c 0.0015458708291116855
+      8016.03c 0.009532706895681406  % Oxygen
+     92235.03c 0.02484327989761445   % Fresh fuel, U-235 in fuel kernel
+     92238.03c 0.10353741405618187   % U-238  in fuel kernel
+
+set pop 10000 48000 40 1.0
+% set pop 1000 180 20 1.0
