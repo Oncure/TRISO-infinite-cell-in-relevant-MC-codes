@@ -1,0 +1,28 @@
+ Double Het Model, tmp_k={temp}
+1  10 -1.05   -1 tmp={temp} imp:n=1
+2  30  -1.9368544856599657   1 -2 tmp={temp} imp:n=1
+3  10 -1.65   2 -3   tmp={temp} imp:n=1
+99  0         3 -999 tmp={temp} imp:n=1
+999 0            999 imp:n=0
+
+c Surface
+1 SPH 0 0 0 1.38
+2 SPH 0 0 0 1.8
+3 SPH 0 0 0 2.0
+*999 RPP -2 2   -2 2   -2 2
+
+c Material
+M10  6000.71c -1
+M30  6000.71c  0.8152168628797424 $carbon-buffer, SiC, IPyC, OPyC
+     14028.71c 0.04305091836499166 $ SiC
+     14029.71c 0.0022729470766766208 $ SiC
+     14030.71c 0.0015458708291116855 $ SiC
+      8016.71c  0.009532706895681406
+     92235.71c 0.02484327989761445 $fresh fuel, U-235 in fuel kernel
+     92238.71c 0.10353741405618187 $ U-238  in fuel kernel
+mode n
+phys:n
+kcode 50000 1.0 30 5000
+$ kcode 10000 1.0 40 48000
+ksrc 0 0 0
+
