@@ -1,0 +1,93 @@
+=csas6
+single pebble unit Core - CE array of trisos and pebbles
+ce_v7.1_endf
+
+read parameters
+npg=50000 nsk=10 gen=500
+'THC=
+'DBH=
+end parameters
+
+
+read comp
+
+wtptfuel11001 1001 1.04665E+01 4
+        6012 2.0
+        8016 20.0
+        92235 10.0
+        92238 68.0
+        
+1.0         850.0 end
+
+' zone A1-R1
+graphite 201  den=1.05 1.0 850.0 end
+graphite 301  den=1.90 1.0 850.0 end
+wtptSiC 401 3.18 4
+         14028 64.3057
+         14029 3.39518
+         14030 2.31638
+         6000 29.9827
+         1.0 850.0  end
+graphite 501  den=1.90 1.0 850.0 end
+graphite 601  den=1.74 1.0 850.0 end
+graphite 701  den=1.41 1.0 850.0 end
+graphite 801  den=1.74 1.0 850.0 end
+wtptFLiBe 901 1.97 4
+        3007 14.1678
+        3006 6.07357E-04
+        4009 9.09984
+        9019 76.7318
+        1.0 850 end
+
+end comp
+
+
+
+read geometry
+
+' zone A1-R1 
+unit 1001
+  sphere 10 0.02125 
+  sphere 20 0.03125   
+  sphere 30 0.03525   
+  sphere 40 0.03875   
+  sphere 50 0.04275  
+  media 1001  1 10
+  media 201 1 -10 20
+  media 301 1 -20 30
+  media 401 1 -30 40
+  media 501 1 -40 50
+
+  hexprism 99 0.059875 0.059875 -0.059875
+  media 601 1 -50 99
+  boundary 99
+
+' zone A1-R1 
+global unit 2001
+  sphere 1  1.38                      media 701 1 1
+  sphere 2 1.8                        array 1001 2 -1 place 1 1 1 -2 -2 -2
+  sphere 3 2.0                        media 801   1 3 -2
+  hexprism 4 2.0065 2.0065 -2.0065    media 901   1 4 -3
+  boundary 4
+
+end geometry
+
+read array
+ ara=1001 typ=shexagonal nux=40 nuy=40 nuz=40
+ fill f1001 end fill
+end array
+
+'read volume
+'type=random
+'batches=5000
+'points=10000
+'end volume
+
+read bounds
+    all=refl
+end bounds
+
+end data
+end
+
+
